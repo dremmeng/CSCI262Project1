@@ -1,0 +1,4 @@
+﻿  pathfinder.cpp
+C:\Users\Drewr\Documents\School\CSCI262\Project1\Project1\pathfinder.cpp(96,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Drewr\Documents\School\CSCI262\Project1\Project1\pathfinder.cpp(103,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Project1.vcxproj -> C:\Users\Drewr\Documents\School\CSCI262\Project1\Debug\Project1.exe
