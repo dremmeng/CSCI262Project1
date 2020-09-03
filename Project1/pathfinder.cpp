@@ -134,7 +134,7 @@ int pathfinder::costtoeast(int y, int x)
     {
         if (y > 0)
         {
-            cost1 = (((_elevations[x][y] - _elevations[x + 1][y - 1])) ^ 2) ^ (1 / 2) + costtoeast(y - 1, x + 1);
+            cost1 = abs(_elevations[x][y] - _elevations[x + 1][y - 1]) + costtoeast(y - 1, x + 1);
         }
         else
         {
@@ -142,13 +142,13 @@ int pathfinder::costtoeast(int y, int x)
         }
         if (y < _height-2)
         {
-            cost2 = (((_elevations[x][y] - _elevations[x + 1][y + 1])) ^ 2) ^ (1 / 2) + costtoeast(y + 1, x + 1);
+            cost2 = abs(_elevations[x][y] - _elevations[x + 1][y + 1]) + costtoeast(y + 1, x + 1);
         }
         else
         {
             cost2 = 100000;
         }
-        cost3 = (((_elevations[x][y] - _elevations[x + 1][y])) ^ 2) ^ (1 / 2) + costtoeast(y, x + 1);
+        cost3 = abs(_elevations[x][y] - _elevations[x + 1][y]) + costtoeast(y, x + 1);
     }
     else if (x == _width-1)
     {
