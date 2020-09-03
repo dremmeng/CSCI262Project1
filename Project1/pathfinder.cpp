@@ -140,7 +140,7 @@ int pathfinder::costtoeast(int y, int x)
         {
             cost1 = 100000;
         }
-        if (y < _height-2)
+        if (y < _height-1)
         {
             cost2 = abs(_elevations[x][y] - _elevations[x + 1][y + 1]) + costtoeast(y + 1, x + 1);
         }
