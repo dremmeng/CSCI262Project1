@@ -5,7 +5,7 @@
     
     assignment: CSCI 262 Project - Pathfinder        
 
-    author: <your name here>
+    author: Drew Remmenga
 */
 
 #include <iostream>
@@ -109,14 +109,13 @@ void pathfinder::_draw_map() {
 // _draw_paths() - find and draw optimal paths from west to east using either recursion or dynamic programming
 // return the best optimal path cost
 int pathfinder::_draw_paths() {
-    // TODO: based on the _use_recursion field, compute minimum cost for every point on map using either
+    // based on the _use_recursion field, compute minimum cost for every point on map using either
     //  recursion or dynamic programming. Keep track of next move necessary to attain min cost.
     //  This will require additional data structures!
-    int lowest_cost = _max;
-    for (int i = 0; i < _height-1; i++)
+    int lowest_cost = 10000000;
+    for (int i = 0; i < _height; i++)
     {
-        int cost = costtoeast(i,0);
-        cout << cost << endl;
+        int cost = costtoeast(i, 0);
         if (cost < lowest_cost)
         {
             lowest_cost = cost;
@@ -126,36 +125,37 @@ int pathfinder::_draw_paths() {
     cout << lowest_cost;
     return 0;
 }
-
-int pathfinder::costtoeast(int y, int x)
+int pathfinder::costtoeast(int row, int col)
 {
-    int cost1=0, cost2=0, cost3=0;
-    if (x < _width-1)
+ 
+    if (col == _width - 1)
     {
-        if (y > 0)
+        int cost1 = 0;
+        int cost2 = 0;
+        int cost3 = 0;
+    }
+    else if (col < _width - 1)
+    {
+        int cost1 = abs(_elevations[row][col] - _elevations[row][col + 1]) + costtoeast(row, col + 1);
+        if (row < _height-1)
         {
-            cost1 = abs(_elevations[x][y] - _elevations[x + 1][y - 1]) + costtoeast(y - 1, x + 1);
+            int cost2 = abs(_elevations[row][col] - _elevations[row+1][col + 1]) + costtoeast(row+1, col + 1);
         }
         else
         {
-            cost1 = 100000;
+            int cost2 = 1000000;
         }
-        if (y < _height-1)
+        if (row > 0)
         {
-            cost2 = abs(_elevations[x][y] - _elevations[x + 1][y + 1]) + costtoeast(y + 1, x + 1);
+            int cost3 = abs(_elevations[row][col] - _elevations[row-1][col + 1]) + costtoeast(row-1, col + 1);
         }
         else
         {
-            cost2 = 100000;
+            int cost3 = 1000000;
         }
-        cost3 = abs(_elevations[x][y] - _elevations[x + 1][y]) + costtoeast(y, x + 1);
     }
-    else if (x == _width-1)
-    {
-        cost1 = cost2 = cost3 = 0;
-    }
-    
-    if ((cost1 < cost2) && (cost1 < cost3)) 
+
+    if ((cost1 < cost2) && (cost1 < cost3))
     {
         return cost1;
     }
@@ -163,11 +163,12 @@ int pathfinder::costtoeast(int y, int x)
     {
         return cost2;
     }
-    else 
+    else
     {
         return cost3;
     }
 }
+
 
 // _save_image - we'll do this one for you :)
 void pathfinder::_save_image(string save_file_name) {

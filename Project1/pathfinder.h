@@ -8,7 +8,7 @@
 
     assignment: CSCI 262 Project - Pathfinder        
 
-    author: <your name here>
+    author: Drew Remmenga
 */
 
 #include <string>
@@ -54,7 +54,7 @@ private:
     bool _read_data(string data_file_name);  // read in raw data
     void _draw_map();                        // draw the grayscale elevation map
     int _draw_paths();                       // find optimal paths, returning the most optimal cost
-    int costtoeast(int y, int x);
+    int costtoeast(int row, int col);
     void _save_image(string save_file_name); // save the image as a .png file
 };
 
