@@ -74,7 +74,7 @@ bool pathfinder::_read_data(string data_file_name) {
 // _draw_map - draw the elevation data as grayscale values on our Picture
 // object.
 void pathfinder::_draw_map() {
-    // TODO: determine min/max elevation values in map
+    //determine min/max elevation values in map
     _min = _elevations[0][0];
     _max = _elevations[0][0];
     for (int i = 0; i < _height; i++)
@@ -91,7 +91,7 @@ void pathfinder::_draw_map() {
             }
         }
     }
-    // TODO: from min, max, determine a scaling factor for data to shift
+    //from min, max, determine a scaling factor for data to shift
     //       elevations into 0 - 255 range
     float factor =  (_max - _min)/255;
     // TODO: for each elevation point, determine its grayscale value and set the Picture point
