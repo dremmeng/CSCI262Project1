@@ -54,7 +54,7 @@ private:
     bool _read_data(string data_file_name);  // read in raw data
     void _draw_map();                        // draw the grayscale elevation map
     int _draw_paths();                       // find optimal paths, returning the most optimal cost
-    int costtoeast(int row, int col);
+    int costtoeast(int row, int col, int cost);
     void _save_image(string save_file_name); // save the image as a .png file
 };
 

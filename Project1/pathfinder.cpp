@@ -115,7 +115,7 @@ int pathfinder::_draw_paths() {
     int lowest_cost = 10000000;
     for (int i = 0; i < _height; i++)
     {
-        int cost = costtoeast(i, 0);
+        int cost = costtoeast(i, 0, 0);
         if (cost < lowest_cost)
         {
             lowest_cost = cost;
@@ -125,47 +125,50 @@ int pathfinder::_draw_paths() {
     cout << lowest_cost;
     return 0;
 }
-int pathfinder::costtoeast(int row, int col)
+int pathfinder::costtoeast(int row, int col, int cost)
 {
- 
+    int cost1, cost2, cost3;
     if (col == _width - 1)
     {
-        int cost1 = 0;
-        int cost2 = 0;
-        int cost3 = 0;
+        cost1 = 0;
+        cost2 = 0;
+        cost3 = 0;
     }
     else if (col < _width - 1)
     {
-        int cost1 = abs(_elevations[row][col] - _elevations[row][col + 1]) + costtoeast(row, col + 1);
+        cost1 = abs(_elevations[row][col] - _elevations[row][col + 1]) + costtoeast(row, col + 1, cost);
         if (row < _height-1)
         {
-            int cost2 = abs(_elevations[row][col] - _elevations[row+1][col + 1]) + costtoeast(row+1, col + 1);
+            cost2 = abs(_elevations[row][col] - _elevations[row+1][col + 1]) + costtoeast(row+1, col + 1, cost);
         }
         else
         {
-            int cost2 = 1000000;
+            cost2 = 1000000;
         }
         if (row > 0)
         {
-            int cost3 = abs(_elevations[row][col] - _elevations[row-1][col + 1]) + costtoeast(row-1, col + 1);
+            cost3 = abs(_elevations[row][col] - _elevations[row-1][col + 1]) + costtoeast(row-1, col + 1,cost);
         }
         else
         {
-            int cost3 = 1000000;
+            cost3 = 1000000;
         }
     }
 
     if ((cost1 < cost2) && (cost1 < cost3))
     {
-        return cost1;
+        cost += cost1;
+        return cost;
     }
     else if ((cost2 < cost1) && (cost2 < cost3))
     {
-        return cost2;
+        cost += cost2;
+        return cost;
     }
     else
     {
-        return cost3;
+        cost += cost3;
+        return cost;
     }
 }
 
