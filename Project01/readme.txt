@@ -1,0 +1,3 @@
+Drew Remmenga
+This project was completed with assistance from Krisitin Farris who indicated I should have my function recall the it's own cost recursively.
+I spent about eight hours on this assigment and while I struggled with the recursion I thought it was fun. It just takes a while to compute so there must be faster methods. I think I calculate every single path to find the best one so that takes a while.
