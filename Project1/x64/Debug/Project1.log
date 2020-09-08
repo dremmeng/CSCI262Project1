@@ -1,4 +1,6 @@
 ﻿  pathfinder.cpp
 C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\Project1\pathfinder.cpp(96,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\Project1\pathfinder.cpp(103,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Project1.vcxproj -> C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\x64\Debug\Project1.exe
+C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\Project1\pathfinder.cpp(139): error C4700: uninitialized local variable 'cost1' used
+C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\Project1\pathfinder.cpp(142): error C4700: uninitialized local variable 'cost2' used
+C:\Users\Drewr\Documents\School\CSCI262\CSCI262Project1\Project1\pathfinder.cpp(150): error C4700: uninitialized local variable 'cost3' used

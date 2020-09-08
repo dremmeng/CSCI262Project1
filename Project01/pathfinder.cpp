@@ -94,7 +94,7 @@ void pathfinder::_draw_map() {
     //from min, max, determine a scaling factor for data to shift
     //       elevations into 0 - 255 range
     float factor =  (_max - _min)/255;
-    // TODO: for each elevation point, determine its grayscale value and set the Picture point
+    //for each elevation point, determine its grayscale value and set the Picture point
     for (int i = 0; i < _height; i++)
     {
         for (int j = 0; j < _width; j++)
@@ -128,18 +128,18 @@ int pathfinder::_draw_paths() {
 int pathfinder::costtoeast(int row, int col, int cost)
 {
     int cost1, cost2, cost3;
-    if (col == _width - 1)
+    if (col == _width-1)
     {
         cost1 = 0;
         cost2 = 0;
         cost3 = 0;
     }
-    else if (col < _width - 1)
+    else if (col < _width)
     {
-        cost1 = abs(_elevations[row][col] - _elevations[row][col + 1]) + costtoeast(row, col + 1, cost);
+        cost1 = abs(_elevations[row][col] - _elevations[row][col + 1]) + costtoeast(row, col + 1, cost1+cost);
         if (row < _height-1)
         {
-            cost2 = abs(_elevations[row][col] - _elevations[row+1][col + 1]) + costtoeast(row+1, col + 1, cost);
+            cost2 = abs(_elevations[row][col] - _elevations[row+1][col + 1]) + costtoeast(row+1, col + 1, cost2+cost);
         }
         else
         {
@@ -147,7 +147,7 @@ int pathfinder::costtoeast(int row, int col, int cost)
         }
         if (row > 0)
         {
-            cost3 = abs(_elevations[row][col] - _elevations[row-1][col + 1]) + costtoeast(row-1, col + 1,cost);
+            cost3 = abs(_elevations[row][col] - _elevations[row-1][col + 1]) + costtoeast(row-1, col + 1,cost3+cost);
         }
         else
         {
